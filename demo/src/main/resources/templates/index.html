@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang = "ja">
+    <head>
+        <meta charset = "utf-8">
+        <title>DenBトップ</title>
+        <link rel="stylesheet"  th:href="@{/css/common/reset.css}">
+        <link rel="stylesheet"  th:href="@{/css/common/header.css}">        
+        <link rel="stylesheet"  th:href="@{/css/common/autocomp.css}">
+        <link rel="stylesheet"  th:href="@{/css/top/style.css}">
+        <link rel="stylesheet"  href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" >
+        <link rel="stylesheet"  href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" />
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+        <script src="http://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    </head>
+    <body>
+        <div class="upload-modal-wapper">
+            <form class="frmupload" method = "post" action = "/add/">
+                <i class="fas fa-times size" id="closebtn"></i>
+                <div class="frmmain">
+                    <ul>
+                        <li class="marginmargin"></li>
+                        <div class = "company-tab">
+                        <li>企業名</li>
+                            <li><input name ="company" type="text" class="search-company" placeholder = "（例）熊本電子ビジネス専門学校" required></li>
+                        </div>
+                        <div class = "reporttype">
+                            <li>種類</li>
+                            <li>
+                                <select size="1" name="reporttype" required>
+                                    <option value="">--選択してください--</option>
+                                    <th:block th:each="item : ${reportType}">
+                                        <option th:value="${item.id}" th:text="${item.name}"></option>
+                                    </th:block>
+                                </select>      
+                            </li>
+                        </div>
+                        <div class ="examdate">
+                            <li>実施日</li>
+                            <li><input name="repdate" type="date" required></li>
+                        </div>
+                        <div class="impress">
+                            <li>感想</li>
+                            <li><textarea name = "naiyou" rows="16" placeholder = "ここに感想、内容を記入" required></textarea></li>
+                        </div>
+                        <li><input id = "sendbtn" type = "submit" value = "投稿"></li>
+                    </ul>    
+                </div>      
+            </form>
+        </div>
+        <div class = "bodyy">
+            <header><!--ヘッダー-->
+                <div class="header-contents">
+                    <div class="header-logo"><a href="">DenB</a><!--ロゴ--></div>
+                    <div class="header-search">
+                        <form class ="frm" name=form1 method = "get" action = "/search/">
+                            <input type = "text" name = "name" class = "search-company" id="search-company" placeholder="企業名から探す...">
+                            <button class="btn" type="admit"><i class="fas fa-search mysearch"></i></button>
+                        </form>
+                    </div>
+                    <div class="header-list">
+                        <ul class="header-ul">
+                            <li class = "topleftbar" id = "uploadbutton">投稿</li>
+                            <li class = "topleftbar"><a class="btnrightbar" href="./administrator/">管理者</a></li>
+                            <li class = "topleftbar"><a class="btnrightbar" href = "teacher/">教師専用</a></li>
+                            <li class = "topleftbar"><a class="btnrightbar" id="acc" href = "./account/">アカウント</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="hover-window">
+                    <a class="logout-btn" href="../../logout/">ログアウト</a>
+                </div>
+            </header>
+        <main>
+            <!--全学生の最近のレポート---->
+            <h1 class = "recentlyreport">電ビ生の最近のレポート</h1>
+                <div class = "newreports">
+                    <ul class="a1">
+                        <!--企業-->
+                        <li class="w1"><a class="companyname" id = "1">株式会社クラフトビール</a></li>
+                        <!--種類-->
+                        <li class="w2"><p class="reptype">説明会　(オンライン)</p></li>  
+                    </ul>
+                    <ul class="a2">
+                        <li class="w2" id="str">投稿者:</li>
+                        <!--学科-->
+                        <li class="w2"><p class="department">ITエンジニア科</p></li>
+                        <!--氏名-->
+                        <li class="w2"><p class="studentname">山口　太郎</p></li>
+                        <div class ="reportdate">
+                            <!--日付-->
+                            <li class="w2"><p class="reportdate">2019年5月3日</p></li>
+                        </div>
+                    </ul>            
+                <!--内容----><p class="report_impression">サンプルテキストサンプルテキストサンプルテキストサンプルテキストサンプルテキストサンプルテキストサンプルテキストサンプルテキストサンプルテキストサンプルテキストサンプルテキストサンプルテキストサンプルテキストサンプルテキストサンプルテキスト</p>
+                </div>
+            <div class="kuuhaku"></div>
+
+            <!--ユーザーの学科の最近のレポート-->
+            <h2 class = "recentlyreport">あなたの学科の最近のレポート</h2>
+            <div class = "newreports">
+                <ul class="a1">
+                        <!--企業--><li class="w1"><a class="companyname" id = "2">株式会社麦茶</a></li>
+                        <!--種類--><li class="w2"><p class="reptype">面接　(対面)</p></li>  
+                    </ul>
+                    <ul class="a2">
+                        <!--text--><li class="w2" id="str">投稿者:</li>
+                        <!--学科--><li class="w2"><p class="department">ITエンジニア科</p></li> 
+                        <!--氏名--><li class="w2"><p class="studentname">野口　太郎</p></li>
+
+                        <div class ="reportdate">
+                        <!--日付--><li class="w2"><p class="reportdate">2021年4月1日</p></li>
+                        </div>
+                </ul>                 
+            <!--内容--><p class="report_impression">サンプルテキストサンプルテキストサンプルテキストサンプルテキストサンプルテキストサンプルテキストサンプルテキストサンプルテキストサンプルテキストサンプルテキストサンプルテキストサンプルテキストサンプルテキストサンプルテキストサンプルテキストサンプルテキストサンプルテキストサンプルテキストサンプルテキストサンプルテキスト</p>
+            </div>
+        </main>
+        <div class="footermargin">
+        </div>
+        </div>
+    </body>
+</html>
