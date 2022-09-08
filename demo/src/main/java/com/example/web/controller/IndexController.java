@@ -6,6 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.example.web.service.ReportService;
 import com.example.web.service.ReportTypeService;
 import com.example.web.service.UserService;
 
@@ -17,6 +18,9 @@ public class IndexController {
     UserService userService;
 
     @Autowired
+    ReportService reportService;
+
+    @Autowired
     ReportTypeService reportTypeService;
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
@@ -25,6 +29,7 @@ public class IndexController {
          * トップ画面へ
          */
         model.addAttribute("reportType", reportTypeService.getAllType());
+        model.addAttribute("reports", reportService.getAllReports());
         return "index";
     }
 }
