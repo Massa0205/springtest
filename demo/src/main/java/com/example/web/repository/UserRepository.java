@@ -9,3 +9,4 @@ import com.example.web.model.User;
 public interface UserRepository extends JpaRepository<User, Integer>{
     
 }
+
